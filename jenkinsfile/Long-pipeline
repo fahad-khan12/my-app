@@ -1,0 +1,40 @@
+pipeline {
+agent any
+  stages {
+    stage('GIT CHECKOUT') {
+    steps {
+    git "https://github.com/fahad-khan12/my-app.git"
+      }
+  }
+    stage('VALIDATING PACKAGE') {
+    steps {
+    sh 'mvn validate'
+      }
+}
+    stage('COMPILING PACKAGE') {
+    steps {
+    sh 'mvn compile' 
+  }
+}
+    stage('TESTING PACKAGE') {
+    steps {
+    sh 'mvn test'
+    }
+}
+    stage('CLEANING AND PACKAGING') {
+    steps {
+    sh 'mvn clean package'
+      }
+}
+    stage('INSTALLING PACKAGE TO LOCAL REPO') {
+    steps {
+    sh 'mvn install'
+    }
+}
+}
+post {
+  success {
+  cleanWs()
+  }
+  }
+  }
