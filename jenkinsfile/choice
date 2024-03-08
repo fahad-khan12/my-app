@@ -1,34 +1,22 @@
 pipeline {
-    agent {
-        label 'demm' 
-    }
-    parameters{
-          choice choices: ['172.17.0.3', '172.17.0.4'], description: 'kk', name: 'deployEnv'
-    }
+    agent any
+    
     stages {
-        stage("clone")
-        {
-        steps{
-                git branch: "main", url: "https://github.com/Pundir26/my-app.git"
+        stage ('Clone') {
+            steps {
+                git branch: "main", url: "https://github.com/Saurabh-WT/my-app.git"
             }
-
         }
-        stage("Build")
-        {
-        steps{
-            sh "mvn package"
+        stage ('Build') {
+            steps {
+                sh "mvn clean install"
             }
-
         }
-        stage("deploy")
-        {
-            steps
-            {
-                sh "scp target/app.war sp@${deployEnv}:/home/sp/apache-tomcat-9.0.83/webapps"
-
+        stage ('Deploy') {
+            steps {
+                sh "cp target/app.war /opt/tomcat/webapps/"
             }
-
+            }
         }
-        
     }
-}
+        
