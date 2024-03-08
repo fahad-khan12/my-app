@@ -3,7 +3,7 @@ agent any
   stages {
     stage('GIT CHECKOUT') {
     steps {
-    git "https://github.com/fahad-khan12/my-app.git"
+    git branch: "main, url: ""https://github.com/fahad-khan12/my-app.git"
       }
   }
     stage('VALIDATING PACKAGE') {
