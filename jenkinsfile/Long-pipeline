@@ -35,10 +35,8 @@ agent any
 }
 }
 }
+    stage('TRIGGERING ANOTHER JOB') {
+     steps {
+      build 'Docker build run push' }
+}}
 }
-post {
-  success {
-   cleanWs()
-  }
-  }
-  }
