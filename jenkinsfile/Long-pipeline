@@ -39,4 +39,8 @@ agent any
      steps {
       build 'Docker build run push' }
 }}
+post {
+  cleanWs() {
+}
+}
 }
