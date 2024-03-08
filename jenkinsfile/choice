@@ -13,7 +13,7 @@ agent any
 }
     stage('DOCKER RUN') {
     steps {
-        sh 'docker run -d -p 8087:8080 depo-deploy'
+        sh 'docker run -d -p 8087:8080 demo-deploy'
         }
     }
     stage('PUSH IMAGE') {
