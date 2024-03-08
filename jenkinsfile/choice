@@ -19,7 +19,7 @@ agent any
     stage('PUSH IMAGE') {
     steps {
         sh 'docker login -u "fahadkhan12" -p "dckr_pat_5Mm30XciBsh6Pgc1Vk3zGL1b68Q"'
-        sh 'docker push fahad-khan12/demo-deploy'
+        sh 'docker push fahadkhan12/demo-deploy'
         }
     }
 }
