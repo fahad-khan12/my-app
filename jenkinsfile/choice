@@ -15,11 +15,10 @@ agent any
     steps {
         sh 'docker run -d -p 8087:8080 fahadkhan12/demo-deploy'
         }
-    }
+}    }
     post {
         success {
             cleanWs()
         }
     }
-}
 }
