@@ -8,7 +8,7 @@ agent any
 }
     stage('Docker build Image') {
     steps {
-        sh 'docker build -t fahad-khan12/demo-deploy .'
+        sh 'docker build -t fahadkhan12/demo-deploy .'
     }
 }
     stage('DOCKER RUN') {
