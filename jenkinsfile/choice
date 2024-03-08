@@ -1,22 +1,25 @@
 pipeline {
-    agent any
-    
+agent any 
     stages {
-        stage ('Clone') {
-            steps {
-                git branch: "main", url: "https://github.com/Saurabh-WT/my-app.git"
-            }
-        }
-        stage ('Build') {
-            steps {
-                sh "mvn clean install"
-            }
-        }
-        stage ('Deploy') {
-            steps {
-                sh "cp target/app.war /opt/tomcat/webapps/"
-            }
-            }
+    stage('GIT CHECKOUT') {
+        steps {
+        git branch: 'main' 'https://github.com/fahad-khan12/my-app.git'
+    }
+}
+    stage('Docker build Image') {
+    steps {
+        sh 'docker build -t fahad-khan12/demo-deploy .'
+    }
+}
+    stage('DOCKER RUN') {
+    steps {
+        sh 'docker run -d -p 8087:8080 depo-deploy'
         }
     }
-        
+    stage('PUSH IMAGE') {
+    steps {
+        sh 'docker push fahad-khan12/demo-deploy'
+        }
+    }
+}
+}
