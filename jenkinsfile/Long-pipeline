@@ -1,7 +1,7 @@
 pipeline {
 agent any
   stages {
-  parallel {
+    parallel {
     stage('GIT CLONE') {
      steps {
      git branch: "main", url: "https://github.com/fahad-khan12/my-app.git"
@@ -32,7 +32,8 @@ agent any
      sh 'mvn install'
     }
 }
-}}
+}
+}
 post {
   success {
    cleanWs()
