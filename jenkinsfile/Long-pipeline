@@ -2,39 +2,39 @@ pipeline {
 agent any
   stages {
     stage('GIT CHECKOUT') {
-    steps {
-    git branch: "main, url: ""https://github.com/fahad-khan12/my-app.git"
+     steps {
+     git branch: "main, url: ""https://github.com/fahad-khan12/my-app.git"
       }
   }
     stage('VALIDATING PACKAGE') {
-    steps {
-    sh 'mvn validate'
+     steps {
+     sh 'mvn validate'
       }
 }
     stage('COMPILING PACKAGE') {
-    steps {
-    sh 'mvn compile' 
+     steps {
+     sh 'mvn compile' 
   }
 }
     stage('TESTING PACKAGE') {
-    steps {
-    sh 'mvn test'
+     steps {
+     sh 'mvn test'
     }
 }
     stage('CLEANING AND PACKAGING') {
-    steps {
-    sh 'mvn clean package'
+     steps {
+     sh 'mvn clean package'
       }
 }
     stage('INSTALLING PACKAGE TO LOCAL REPO') {
-    steps {
-    sh 'mvn install'
+     steps {
+     sh 'mvn install'
     }
 }
 }
 post {
   success {
-  cleanWs()
+   cleanWs()
   }
   }
   }
