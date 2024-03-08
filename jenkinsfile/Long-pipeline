@@ -1,6 +1,7 @@
 pipeline {
 agent any
   stages {
+   stage('PARALLEL') {
     parallel {
     stage('GIT CLONE') {
      steps {
@@ -31,6 +32,7 @@ agent any
      steps {
      sh 'mvn install'
     }
+}
 }
 }
 }
