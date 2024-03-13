@@ -21,6 +21,6 @@ stage('DEPLOY TO NEXUS REPO') {
     withMaven(globalMavenSettingsConfig: 'nexus-setting.xml', jdk: ", maven: ", mavenSettingsConfig: ", traceability: true) {
     sh "mvn deploy -DskipTests=true"
     }
-  }}••••••••••••••••••••••••••••••••••••
+  }}
 }
 }
