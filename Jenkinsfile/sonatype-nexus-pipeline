@@ -13,14 +13,14 @@ stage('GIT CHECKOUT') {
 }
 stage('CLEAN AND BUILD') {
   steps {
-  sh 'mvn clean install -DskipTests=true'
+  sh 'mvn clean install'
   }
 }
 stage('DEPLOY TO NEXUS REPO') {
   steps {
-    withMaven(globalMavenSettingsConfig: 'nexus-setting.xml', jdk17: '', maven3: '', mavenSettingsConfig: '', traceability: true) {
+    withMaven(globalMavenSettingsConfig: 'nexus-setting.xml', jdk: ", maven: ", mavenSettingsConfig: ", traceability: true) {
     sh "mvn deploy -DskipTests=true"
     }
-  }}
+  }}••••••••••••••••••••••••••••••••••••
 }
 }
