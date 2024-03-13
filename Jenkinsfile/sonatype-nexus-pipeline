@@ -18,9 +18,11 @@ stage('CLEAN AND BUILD') {
 }
 stage('DEPLOY TO NEXUS REPO') {
   steps {
-    withMaven(globalMavenSettingsConfig: 'nexus-setting.xml', jdk: ", maven: ", mavenSettingsConfig: ", traceability: true) {
+    withMaven(globalMavenSettingsConfig: 'nexus-setting.xml', jdk: ' ', maven: ' ', mavenSettingsConfig: ' ', traceability: true)
+{
     sh "mvn deploy -DskipTests=true"
     }
+
   }}
 }
 }
