@@ -1,29 +1,28 @@
 pipeline {
-agent any
-
-tools {
-maven "maven3"
-jdk "jdk17"
-}
-
-stages {
-stage('GIT CHECKOUT') {
-  steps {
-  git branch: "main", url: "https://github.com/fahad-khan12/my-app.git"
+  agent any
+  tools {
+    maven "maven3"
+    jdk "jdk17"
   }
-}
-stage('CLEAN AND BUILD') {
-  steps {
-  sh 'mvn clean install'
-  }
-}
-stage('DEPLOY TO NEXUS REPO') {
-  steps {
-    withMaven(globalMavenSettingsConfig: 'global-settings-xml',jdk: '',maven: '', mavenSettingsConfig: '', traceability: true)
-{
-    sh "mvn deploy -DskipTests=true"
+  stages {
+    stage('GIT CHECKOUT') {
+      steps {
+        git branch: "main", url: "https://github.com/fahad-khan12/my-app.git"
+      }
     }
-
-  }}
-}
+    stage('CLEAN AND BUILD') {
+      steps {
+        sh 'mvn clean install'
+      }
+    }
+    stage('DEPLOY TO NEXUS REPO') {
+      steps {
+        script {
+          withMaven(globalMavenSettingsConfig: 'global-settings-xml', maven: 'maven3') {
+            sh "mvn deploy -DskipTests=true"
+          }
+        }
+      }
+    }
+  }
 }
