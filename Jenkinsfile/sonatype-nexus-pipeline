@@ -1,0 +1,26 @@
+pipeline {
+agent any
+
+tools {
+maven "maven3"
+}
+
+stages {
+stage('GIT CHECKOUT') {
+  steps {
+  sh 'git branch: "main", url: "https://github.com/fahad-khan12/my-app.git"'
+  }
+}
+stage('CLEAN AND BUILD') {
+  steps {
+  sh 'mvn clean install -DskipTests=true'
+  }
+}
+stage('DEPLOY TO NEXUS REPO') {
+  steps {
+    withMaven(globalMavenSettingsConfig: 'nexus-settings.xml', jdk: '', maven: '', mavenSettingsConfig: '', traceability: true) {
+    sh "mvn deploy -DskipTests=true"
+    }
+  }}
+}
+}
